@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel | Luxurylevels</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gold: #C9A962;
+            --primary-dark: #1A1A1A;
+            --secondary-dark: #2D2D2D;
+            --text-light: #F5F5F5;
+            --text-muted: #9A9A9A;
+            --accent-red: #D4424E;
+            --bg-card: #222222;
+            --border-subtle: rgba(201, 169, 98, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background: linear-gradient(90deg, var(--primary-dark), var(--secondary-dark));
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .top-bar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .sign-in-btn {
+            background: transparent;
+            border: 1px solid var(--primary-gold);
+            color: var(--primary-gold);
+            padding: 6px 20px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .sign-in-btn:hover {
+            background: var(--primary-gold);
+            color: var(--primary-dark);
+        }
+
+        /* Header */
+        header {
+            background: var(--primary-dark);
+            padding: 30px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary-gold);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        nav ul li a {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+            color: var(--text-light);
+            position: relative;
+            padding: 5px 0;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--primary-gold);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after,
+        nav ul li a.active::after {
+            width: 100%;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            color: var(--primary-gold);
+        }
+
+        .search-icon {
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+        }
+
+        .search-icon:hover {
+            color: var(--primary-gold);
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb a {
+            color: var(--text-muted);
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary-gold);
+        }
+
+        .breadcrumb span {
+            margin: 0 10px;
+        }
+
+        /* Page Title */
+        .page-title {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px 30px;
+        }
+
+        .page-title h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        .page-title .tagline {
+            font-size: 16px;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 25px;
+        }
+
+        /* Filter Tabs */
+        .filter-tabs {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+
+        .filter-tabs a {
+            padding: 10px 20px;
+            background: var(--bg-card);
+            color: var(--text-muted);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .filter-tabs a:hover,
+        .filter-tabs a.active {
+            background: var(--primary-gold);
+            color: var(--primary-dark);
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 60px;
+        }
+
+        /* Article List */
+        .article-list {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .article-item {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 30px;
+            background: var(--bg-card);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .article-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .article-item .image-wrapper {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .article-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .article-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .article-item .content {
+            padding: 30px 30px 30px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .article-item h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .article-item h2 a:hover {
+            color: var(--primary-gold);
+        }
+
+        .article-item .meta {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .article-item .meta .author {
+            color: var(--primary-gold);
+        }
+
+        .article-item .excerpt {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .read-more-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: transparent;
+            border: 1px solid var(--primary-gold);
+            color: var(--primary-gold);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            width: fit-content;
+        }
+
+        .read-more-btn:hover {
+            background: var(--primary-gold);
+            color: var(--primary-dark);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .sidebar-section {
+            background: var(--bg-card);
+            border-radius: 8px;
+            padding: 30px;
+        }
+
+        .sidebar-section h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--primary-gold);
+        }
+
+        .sidebar-article {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .sidebar-article:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .sidebar-article .thumb {
+            width: 80px;
+            height: 80px;
+            flex-shrink: 0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .sidebar-article .thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .sidebar-article .info h5 {
+            font-family: 'Playfair Display', serif;
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .sidebar-article .info h5 a:hover {
+            color: var(--primary-gold);
+        }
+
+        .sidebar-article .info .excerpt {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+
+        .sidebar-article .read-more-small {
+            font-size: 11px;
+            color: var(--primary-gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .sidebar-article .read-more-small:hover {
+            text-decoration: underline;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 50px;
+        }
+
+        .pagination a,
+        .pagination span {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-card);
+            color: var(--text-muted);
+            font-size: 14px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .pagination a:hover,
+        .pagination span.current {
+            background: var(--primary-gold);
+            color: var(--primary-dark);
+        }
+
+        .pagination-info {
+            display: flex;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 13px;
+            margin-left: 15px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary-dark);
+            padding: 40px 0 20px;
+            border-top: 1px solid var(--border-subtle);
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-gold);
+        }
+
+        .copyright {
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-muted);
+            padding-top: 20px;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .copyright a {
+            color: var(--primary-gold);
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 8px;
+            width: 400px;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .modal h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--primary-gold);
+        }
+
+        .modal input {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            background: var(--primary-dark);
+            border: 1px solid var(--border-subtle);
+            border-radius: 4px;
+            color: var(--text-light);
+            font-family: inherit;
+        }
+
+        .modal input:focus {
+            outline: none;
+            border-color: var(--primary-gold);
+        }
+
+        .modal button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background: var(--primary-gold);
+            border: none;
+            border-radius: 4px;
+            color: var(--primary-dark);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .modal button[type="submit"]:hover {
+            background: #B8963F;
+        }
+
+        .modal .forgot-link {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .article-item {
+                grid-template-columns: 1fr;
+            }
+
+            .article-item .image-wrapper {
+                height: 300px;
+            }
+
+            .article-item .content {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            .page-title h1 {
+                font-size: 32px;
+            }
+
+            .filter-tabs a {
+                padding: 8px 15px;
+                font-size: 11px;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .article-item {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .article-item:nth-child(2) { animation-delay: 0.1s; }
+        .article-item:nth-child(3) { animation-delay: 0.2s; }
+        .article-item:nth-child(4) { animation-delay: 0.3s; }
+        .article-item:nth-child(5) { animation-delay: 0.4s; }
+        .article-item:nth-child(6) { animation-delay: 0.5s; }
+        .article-item:nth-child(7) { animation-delay: 0.6s; }
+        .article-item:nth-child(8) { animation-delay: 0.7s; }
+        .article-item:nth-child(9) { animation-delay: 0.8s; }
+        .article-item:nth-child(10) { animation-delay: 0.9s; }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <button class="sign-in-btn" onclick="openModal()">Sign In</button>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <a href="#link-home" class="logo">Luxurylevels</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="celebrities.html">Celeb</a></li>
+                    <li><a href="fashion.html">Fashion</a></li>
+                    <li><a href="lifestyle.html">Lifestyle</a></li>
+                    <li><a href="travel.html" class="active">Travel</a></li>
+                    <li><a href="tech.html">Tech</a></li>
+                </ul>
+            </nav>
+            <div class="search-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="#link-home">Home</a>
+        <span>›</span>
+        <span>Travel</span>
+    </div>
+
+    <!-- Page Title -->
+    <div class="page-title">
+        <h1>Travel</h1>
+        <p class="tagline">The places where the richest of the rich go.</p>
+        <div class="filter-tabs">
+            <a href="#link-filter-latest" class="active">Latest</a>
+            <a href="#link-filter-featured">Featured posts</a>
+            <a href="#link-filter-popular">Most popular</a>
+            <a href="#link-filter-7days">7 days popular</a>
+            <a href="#link-filter-review">By review score</a>
+            <a href="#link-filter-random">Random</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Articles -->
+        <div class="article-list">
+            <article class="article-item">
+                <div class="image-wrapper">
+                    <a href="#link-article-suites">
+                        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&q=80" alt="Expensive Suites">
+                    </a>
+                </div>
+                <div class="content">
+                    <h2><a href="#link-article-suites">Top 14 of the World's Most Expensive Suites</a></h2>
+                    <div class="meta">
+                        <a href="#link-author-nathan" class="author">Nathan</a>
+                        <span>January 21, 2025</span>
+                        <span>0 Comments</span>
+                    </div>
+                    <p class="excerpt">Traveling can take many forms, often influenced by the budget at hand. For some, the cost of accommodation is no obstacle when it comes...</p>
+                    <a href="#link-article-suites" class="read-more-btn">Read More</a>
+                </div>
+            </article>
+
+            <article class="article-item">
+                <div class="image-wrapper">
+                    <a href="#link-article-ocean-liners">
+                        <img src="https://images.unsplash.com/photo-1548574505-5e239809ee19?w=600&q=80" alt="Ocean Liners">
+                    </a>
+                </div>
+                <div class="content">
+                    <h2><a href="#link-article-ocean-liners">18 Unbelievable Luxurious Ocean Liners</a></h2>
+                    <div class="meta">
+                        <a href="#link-author-nathan" class="author">Nathan</a>
+                        <span>January 20, 2025</span>
+                        <span>0 Comments</span>
+                    </div>
+                    <p class="excerpt">Do you fantasize about sailing across the open ocean or exploring picturesque island destinations in tropical paradises? If so, you can enjoy these adventures...</p>
+                    <a href="#link-article-ocean-liners" class="read-more-btn">Read More</a>
+                </div>
+            </article>
+
+            <article class="article-item">
+                <div class="image-wrapper">
+                    <a href="#link-article-luxurious-hotels">
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80" alt="Luxurious Hotels">
+                    </a>
+                </div>
+                <div class="content">
+                    <h2><a href="#link-article-luxurious-hotels">13 OF THE WORLD'S MOST LUXURIOUS HOTELS</a></h2>
+                    <div class="meta">
+                        <a href="#link-author-nathan" class="author">Nathan</a>
+                        <span>January 17, 2025</span>
+                        <span>0 Comments</span>
+                    </div>
+                    <p class="excerpt">Luxury is often synonymous with opulence, sophistication, and grandeur. It's a state of indulgence that can be found in various forms and settings. Hotels,...</p>
+                    <a href="#link-article-luxurious-hotels" class="read-more-btn">Read More</a>
+                </div>
+            </article>
+
+            <article class="article-item">
+                <div class="image-wrapper">
+                    <a href="#link-article-pools">
+                        <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600&q=80" alt="Hotel Swimming Pools">
+                    </a>
+                </div>
+                <div class="content">
+                    <h2><a href="#link-article-pools">The World's 15 Most Beautiful Hotel Swimming Pools</a></h2>
+                    <div class="meta">
+                        <a href="#link-author-nathan" class="author">Nathan</a>
+                        <span>December 26, 2024</span>
+                        <span>0 Comments</span>
+                    </div>
+                    <p class="excerpt">A beautifully designed pool often serves as a centerpiece for luxury hotels, and it's easy to see why—such features are among their biggest attractions...</p>
+                    <a href="#link-article-pools" class="read-more-btn">Read More</a>
+                </div>
+            </article>
+
+            <article class="article-item">
+                <div class="image-wrapper">
+                    <a href="#link-article-cities">
+                        <img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=600&q=80" alt="Best Cities">
+                    </a>
+                </div>
+                <div class="content">
+                    <h2><a href="#link-article-cities">25 of the Best Cities to Live In</a></h2>
+                    <div class="meta">
+                        <a href="#link-author-nathan" class="author">Nathan</a>
+                        <span>December 26, 2024</span>
+                        <span>0 Comments</span>
+                    </div>
+                    <p class="excerpt">When we imagine cities, our minds often picture impressive skyscrapers and iconic cityscapes. Although there are many urban areas worldwide, not every city will...</p>
+                    <a href="#link-article-cities" class="read-more-btn">Read More</a>
+                </div>
+            </article>
+
+            <article class="article-item">
+                <div class="image-wrapper">
+                    <a href="#link-article-beaches">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80" alt="Blue Flag Beaches">
+                    </a>
+                </div>
+                <div class="content">
+                    <h2><a href="#link-article-beaches">Top 20 Blue Flag Beaches Around The World</a></h2>
+                    <div class="meta">
+                        <a href="#link-author-nathan" class="author">Nathan</a>
+                        <span>December 23, 2024</span>
+                        <span>0 Comments</span>
+                    </div>
+                    <p class="excerpt">What sets a Blue Flag beach apart? It's not just about stunning scenery; these beaches meet strict criteria for water quality, safety, and eco-conscious...</p>
+                    <a href="#link-article-beaches" class="read-more-btn">Read More</a>
+                </div>
+            </article>
+
+            <article class="article-item">
+                <div class="image-wrapper">
+                    <a href="#link-article-airports">
+                        <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=600&q=80" alt="Luxurious Airports">
+                    </a>
+                </div>
+                <div class="content">
+                    <h2><a href="#link-article-airports">Top 15 Most Comfortable & Luxurious Airports In the World</a></h2>
+                    <div class="meta">
+                        <a href="#link-author-esther" class="author">Esther</a>
+                        <span>May 16, 2019</span>
+                        <span>0 Comments</span>
+                    </div>
+                    <p class="excerpt">Being an avid traveler, I have been to numerous airports from around the globe. While some are just basic and gets its job done,...</p>
+                    <a href="#link-article-airports" class="read-more-btn">Read More</a>
+                </div>
+            </article>
+
+            <article class="article-item">
+                <div class="image-wrapper">
+                    <a href="#link-article-mediocrity">
+                        <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600&q=80" alt="Luxury Choice">
+                    </a>
+                </div>
+                <div class="content">
+                    <h2><a href="#link-article-mediocrity">Do You Want to Choose Mediocrity or Luxury?</a></h2>
+                    <div class="meta">
+                        <a href="#link-author-cameron" class="author">Cameron</a>
+                        <span>March 13, 2019</span>
+                        <span>0 Comments</span>
+                    </div>
+                    <p class="excerpt">Join us in this exciting journey where we'll show you how you can find more luxury for your money. Our industrial world is churning out products...</p>
+                    <a href="#link-article-mediocrity" class="read-more-btn">Read More</a>
+                </div>
+            </article>
+
+            <article class="article-item">
+                <div class="image-wrapper">
+                    <a href="#link-article-homes">
+                        <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&q=80" alt="Expensive Homes">
+                    </a>
+                </div>
+                <div class="content">
+                    <h2><a href="#link-article-homes">5 Countries With The Most Expensive Homes</a></h2>
+                    <div class="meta">
+                        <a href="#link-author-julia" class="author">Julia</a>
+                        <span>February 12, 2019</span>
+                        <span>0 Comments</span>
+                    </div>
+                    <p class="excerpt">Everyone would fancy living in a luxurious home if they can afford it. While this is true, there are some countries or places where luxury homes...</p>
+                    <a href="#link-article-homes" class="read-more-btn">Read More</a>
+                </div>
+            </article>
+
+            <article class="article-item">
+                <div class="image-wrapper">
+                    <a href="#link-article-5hotels">
+                        <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&q=80" alt="5 Luxurious Hotels">
+                    </a>
+                </div>
+                <div class="content">
+                    <h2><a href="#link-article-5hotels">5 Most Luxurious Hotels in the World</a></h2>
+                    <div class="meta">
+                        <a href="#link-author-julia" class="author">Julia</a>
+                        <span>February 12, 2019</span>
+                        <span>0 Comments</span>
+                    </div>
+                    <p class="excerpt">Almost everyone goes on a vacation once in a while to either get off work, get away from certain people, or just to spend time...</p>
+                    <a href="#link-article-5hotels" class="read-more-btn">Read More</a>
+                </div>
+            </article>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <span class="current">1</span>
+                <a href="#link-page-2">2</a>
+                <a href="#link-page-next">›</a>
+                <span class="pagination-info">Page 1 of 2</span>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h4>Trending Now</h4>
+                
+                <article class="sidebar-article">
+                    <div class="thumb">
+                        <a href="#link-sidebar-grow-food">
+                            <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=200&q=80" alt="Grow Food">
+                        </a>
+                    </div>
+                    <div class="info">
+                        <h5><a href="#link-sidebar-grow-food">20 Reasons Why You Should Grow Your Own Food</a></h5>
+                        <p class="excerpt">More and more people are choosing to grow their own food in their gardens these days...</p>
+                        <a href="#link-sidebar-grow-food" class="read-more-small">Read more</a>
+                    </div>
+                </article>
+
+                <article class="sidebar-article">
+                    <div class="thumb">
+                        <a href="#link-sidebar-gardening">
+                            <img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=200&q=80" alt="Gardening Hacks">
+                        </a>
+                    </div>
+                    <div class="info">
+                        <h5><a href="#link-sidebar-gardening">25 Genius Gardening Hacks You'll Be Glad You Know</a></h5>
+                        <p class="excerpt">There's nothing quite like having a stunning garden right in your own backyard...</p>
+                        <a href="#link-sidebar-gardening" class="read-more-small">Read more</a>
+                    </div>
+                </article>
+
+                <article class="sidebar-article">
+                    <div class="thumb">
+                        <a href="#link-sidebar-makeup">
+                            <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=200&q=80" alt="Makeup Tips">
+                        </a>
+                    </div>
+                    <div class="info">
+                        <h5><a href="#link-sidebar-makeup">15 Make-Up Tips For The Older Women</a></h5>
+                        <p class="excerpt">Aging is a natural and beautiful part of life. The lines and wrinkles that come with it...</p>
+                        <a href="#link-sidebar-makeup" class="read-more-small">Read more</a>
+                    </div>
+                </article>
+            </div>
+
+            <div class="sidebar-section">
+                <h4>Newsletter</h4>
+                <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px;">Subscribe to get the latest travel news delivered to your inbox.</p>
+                <form onsubmit="return false;">
+                    <input type="email" placeholder="Your email address" style="width: 100%; padding: 12px; background: var(--primary-dark); border: 1px solid var(--border-subtle); border-radius: 4px; color: var(--text-light); margin-bottom: 15px;">
+                    <button type="submit" style="width: 100%; padding: 12px; background: var(--primary-gold); border: none; border-radius: 4px; color: var(--primary-dark); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; cursor: pointer;">Subscribe</button>
+                </form>
+            </div>
+        </aside>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#link-advertising">Advertising</a>
+                <a href="#link-contact">Contact Us</a>
+                <a href="#link-cookie">Cookie Policy</a>
+                <a href="#link-impressum">Impressum</a>
+                <a href="#link-terms">Terms of Use</a>
+            </div>
+            <div class="copyright">
+                © All rights reserved - <a href="#link-home">Luxurylevels</a> - 2026
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sign In Modal -->
+    <div class="modal-overlay" id="signInModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <h3>Welcome!</h3>
+            <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 14px;">Log into your account</p>
+            <form onsubmit="return false;">
+                <input type="text" placeholder="Your username" required>
+                <input type="password" placeholder="Your password" required>
+                <button type="submit">Sign In</button>
+            </form>
+            <a href="#link-forgot-password" class="forgot-link">Forgot your password?</a>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('signInModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('signInModal').classList.remove('active');
+        }
+
+        // Close modal on outside click
+        document.getElementById('signInModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(26, 26, 26, 0.95)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.3)';
+            } else {
+                header.style.background = 'var(--primary-dark)';
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // Filter tab functionality
+        document.querySelectorAll('.filter-tabs a').forEach(tab => {
+            tab.addEventListener('click', function(e) {
+                document.querySelectorAll('.filter-tabs a').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
